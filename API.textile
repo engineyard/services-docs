@@ -199,8 +199,8 @@ bc.. {
     "name":                      "Compliment service",
     "description":               "We post friendly messages to your dashboard daily.  Signup is free!"
     "vars":     [
-      "COMPLIMENTS_API_KEY", 
-      "DAILY_SUPPLEMENT_PATH"
+      "api_key", 
+      "daily_supplement_path"
     ],
     "home_url":                   "http://compliments-r-us.net",
     "terms_and_conditions_url":   "http://compliments-r-us.net/terms",
@@ -354,8 +354,8 @@ bc.. {
     "configuration_url":  "http://compliments-r-us.net/accounts/4331/compliment-generator/1234",
                           // Should be a URL specific to the provisioned service
     "vars": {
-      "COMPLIMENTS_API_KEY": "987698AFB0987EFBB983", 
-      "DAILY_SUPPLEMENT_PATH": "/etc/"
+      "api_key": "987698AFB0987EFBB983", 
+      "daily_supplement_path": "/etc/"
     }
   },
   "message":            {}
@@ -379,7 +379,7 @@ h3. Configuration on Customer Instances
 The @configuration_variables@ returned from the provision call will be populated on the customer instances.
 
 These values will be:
-* Available as environment variables for customers ruby scripts and ruby applications.
+* Available as configration variables for customers ruby scripts and ruby applications, accessible via ey_config. ("https://github.com/engineyard/ey_config":https://github.com/engineyard/ey_config)
 * Available in the "DNA" provided to chef recipes that may need them for configuration.
 * Constant until the user de-provisions.
 
@@ -505,8 +505,6 @@ h3. Private Beta
 ** "Request access" button.
 * Partners can see all customers who have requested access, and can grant access via the partner dashboard.
 
-_Open Question_:  Do partners need the ability to converse with users requesting access?
-
 h3. Public Beta
 
 Identical to GA (below), but the service is tagged as "Beta" on the services screen.  This is intended to set expectations to customers as to what level of support they can expect from partners.
@@ -514,41 +512,3 @@ Identical to GA (below), but the service is tagged as "Beta" on the services scr
 h3. GA
 
 The service is visible on the service listing, and can be enabled by any customer.
-
-h2. Example Service Integrations
-
-Examples of how a service type might decide to approach integration.
-
-h3. Email service
-
-* Exposes an API key to the application via the environment variable system.
-* Notify the customer when they approach their email sending limits.
-* Alert the customer when they have exceeded their limits.
-* Alert the customer for spam issues.
-* Update the status with outbound email count.
-
-h3. Error catching service
-
-* Exposes an API key to the application via the environment variable system.
-* Use Alerts to forward exception emails to users.
-
-h3. Database or Search service
-
-* Exposes an API key to the application via the environment variable system.
-* Notify the user that the default "small" DB that was provisioned might need upgrading.
-* Update the Status to communicate when provisioning of your new DB is not complete yet.
-* Update the Status to provide DB performance statistics.
-* Alert the user if the DB has had a catastrophic failure.
-
-h3. Logging service
-
-* Exposes syslog forwarding host/port information to Chef via the environment variable system.
-* Update the Status to provide logging statistics.
-* Notify the customer when they approach their email sending limits.
-* Alert the customer when they have exceeded their limits.
-
-h3. DNS and Monitoring services
-
-* Make use of account-level configuration to setup the service.
-* Notify the customer of interesting events.
-

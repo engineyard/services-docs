@@ -16,8 +16,7 @@ h1. Documentation
 
 *Specification-style* documentation at: "https://github.com/engineyard/services-docs/blob/master/API.textile":https://github.com/engineyard/services-docs/blob/master/API.textile
 
-*Tutorial-style* documentation at:
-"https://github.com/engineyard/chronatog":https://github.com/engineyard/chronatog
+*Tutorial-style* documentation at: "https://github.com/engineyard/chronatog":https://github.com/engineyard/chronatog
 
 *Service Provider API Gem* at: "https://github.com/engineyard/ey_services_api":https://github.com/engineyard/ey_services_api
 
