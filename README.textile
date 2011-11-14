@@ -4,9 +4,9 @@ Steps to getting started with a Partner Account.
 
 # Sign up for an app cloud account at "http://cloud.engineyard.com/":http://cloud.engineyard.com/.  A Trial account is fine.
 # E-mail your contact at EngineYard with the following information:
-* The email you used to signup
-* The name of your ey cloud account
-* The name you'd like to use for your "partner" account (this is internal only)
+** The email you used to signup
+** The name of your ey cloud account
+** The name you'd like to use for your "partner" account (this is internal only)
 
 EY will then create a parter account for you, granting you access to: "https://services.engineyard.com":https://services.engineyard.com
 
