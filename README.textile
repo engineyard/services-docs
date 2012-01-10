@@ -18,6 +18,9 @@ h1. Documentation
 
 *Tutorial-style* documentation at: "https://github.com/engineyard/chronatog":https://github.com/engineyard/chronatog
 
+*Guidelines* for platform services *messages* at:
+"https://github.com/engineyard/services-docs/blob/master/messaging-guidelines.md":https://github.com/engineyard/services-docs/blob/master/messaging-guidelines.md
+
 *Service Provider API Gem* at: "https://github.com/engineyard/ey_services_api":https://github.com/engineyard/ey_services_api
 
 *HMAC Authentication and SSO Gem* at: "https://github.com/engineyard/ey_api_hmac":https://github.com/engineyard/ey_api_hmac
