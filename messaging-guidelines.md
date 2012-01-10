@@ -98,7 +98,7 @@ Notification messages tell users about actions that they can or need to take.
 
 Notification messages should be less than 256 characters and use Textile so that links can be included, but all other formatting is discouraged and ultimately stripped out.
 
-![notification message screenshot](images/notification.png)
+![notification message screenshot](/engineyard/services-docs/master/images/notification.png)
 
 ### 2.1 Example 1: Notification message
 
@@ -152,7 +152,7 @@ The purpose of the status message is to inform the user about the current state 
 
 Status messages should be sent in Textile. Plaintext is accepted and will be wrapped in HTML paragraph tags.
 
-![status message screenshot](images/status.png)
+![status message screenshot](/engineyard/services-docs/master/images/status.png)
 
 
 ### 3.1 Example 1: Status message
