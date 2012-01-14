@@ -21,6 +21,9 @@ h1. Documentation
 *Guidelines* for platform services *messages* at:
 "https://github.com/engineyard/services-docs/blob/master/messaging-guidelines.md":https://github.com/engineyard/services-docs/blob/master/messaging-guidelines.md
 
+*Guidelines* for putting a "Return to Engine Yard" button on your site:
+"https://github.com/engineyard/services-docs/blob/master/return-button-guidelines.md":https://github.com/engineyard/services-docs/blob/master/return-button-guidelines.md
+
 *Service Provider API Gem* at: "https://github.com/engineyard/ey_services_api":https://github.com/engineyard/ey_services_api
 
 *HMAC Authentication and SSO Gem* at: "https://github.com/engineyard/ey_api_hmac":https://github.com/engineyard/ey_api_hmac
