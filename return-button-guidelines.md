@@ -3,7 +3,7 @@
 Please put one of these buttons on your page, so that the user knows to
 return to Engine Yard and complete the setup process.
 
-Checkout some [examples](return_button_examples.html).
+Checkout some [examples](http://engineyard.github.com/services-docs/return_button_examples.html).
 
 ## Automatically redirecting?
 
