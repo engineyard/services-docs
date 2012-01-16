@@ -56,7 +56,7 @@ You can choose to code your "buttons" as href link, button, or input (type submi
         }
         </style>
 
-2. Choose which element you want to use for your return-to-Engine-Yard button:  
+2. Choose which element you want to use for your return-to-Engine-Yard button, for example:  
 
     * If your configuration process uses a form that ends with a submit button that returns users back to the Engine Yard UI, use the button element with the text "Save and return to" for your form's submit button.
     * If you have your own landing page at the end of the configuration process, use the href link element with the text "Return to".
