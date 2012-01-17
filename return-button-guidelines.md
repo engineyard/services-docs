@@ -73,11 +73,11 @@ Use the following HTML code as templates for the return-to-Engine-Yard buttons o
 
 ### **href link** elements
 
-    <a href="returnlink" class="ey-return">Save and return to <img src="https://cloud.engineyard.com/images/icons/engine_yard_icon.png" alt="Engine Yard" /></a>
+    <a href="returnlink" class="ey-return">Return to <img src="http://www.engineyard.com/images/engine_yard_icon.png" alt="Engine Yard" /></a>
 
 ### **button** elements
 
-    <button class="ey-return">Save and return to <img src="https://cloud.engineyard.com/images/icons/engine_yard_icon.png" alt="Engine Yard" /></button>
+    <button class="ey-return">Save and return to <img src="http://www.engineyard.com/images/engine_yard_icon.png" alt="Engine Yard" /></button>
 
 ### **input type="submit"**
 
