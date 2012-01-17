@@ -1,6 +1,6 @@
 # Putting return-to-Engine-Yard buttons on your page
 
-If you are integrating your platform service with Engine Yard Cloud, you must to place return-to-Engine-Yard buttons on your application pages so that users can return to the Engine Yard UI. 
+If you are integrating your platform service with Engine Yard Cloud, you must place return-to-Engine-Yard buttons on your application pages so that users can return to the Engine Yard UI. 
 
 This document describes how to create these buttons. 
 
