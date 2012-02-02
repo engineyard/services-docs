@@ -1,6 +1,6 @@
 h1. API
 
-This document describes how partners will work with Engine Yard to provide services that integrate with AppCloud to Engine Yard customers.  A Ruby implementation of this API is available via: @gem install ey_services_api@ (Source code here: "https://github.com/engineyard/ey_services_api":https://github.com/engineyard/ey_services_api).
+This document describes how partners work with Engine Yard to provide services that integrate with Engine Yard Cloud to Engine Yard users.  A Ruby implementation of this API is available via: @gem install ey_services_api@ (Source code here: "https://github.com/engineyard/ey_services_api":https://github.com/engineyard/ey_services_api).
 
 h2. Key Topics in this Document:
 
@@ -16,13 +16,13 @@ General API properties:
 
 Specific APIs are:
 
-* Partner Service Registration -- The way in which Partners create and expose services to EY Customers.
+* Partner Service Registration -- The way in which partners create and expose services to Engine Yard users.
 
-* Service Enablement for User Account -- The way in which EY Customers signup for your service.
+* Service Enablement for User Account -- The way in which Engine Yard users sign up for services.
 
-* Service Provisioning -- The way in which EY Customers provision a service for a particular use.
+* Service Provisioning -- The way in which Engine Yard users provision a service for a particular use.
 
-* User Feedback -- The way in which partners can send messages to EY Customers about their services.
+* User Feedback -- The way in which partners can send messages to Engine Yard users about their services.
 
 * Billing -- The way in which partners are paid.
 
@@ -30,40 +30,40 @@ h2. Definitions
 
 These definitions are helpful for understanding this document:
 
-| *Partner*               | A third-party integrating one or more services with EY cloud. |
-| *Service*               | Functionality provided by a Partner. |
-| *Application*           | A web application and its deployment configuration on EY cloud. |
+| *Partner*               | A third party integrating one or more services with Engine Yard Cloud. |
+| *Service*               | Functionality provided by a partner. |
+| *Application*           | A web application and its deployment configuration on Engine Yard Cloud. |
 | *Environment*           | A set of one or more running servers hosting one or more running applications. |
 | *Provisioned Service*   | A piece of functionality or capacity provisioned on-demand for a specific application and environment. |
 | *Account*               | A single billed entity, having one or more applications running in one or more environments.  |
-| *Service Account*       | A particular service as activated for a specific Account.  A parent entity to Provisioned Service. |
+| *Service Account*       | A particular service as activated for a specific account.  A parent entity to Provisioned Service. |
 | *User*                  | An individual user (with unique email and login credential) having access to one or more accounts. |
 
 h2. API Authentication
 
-When a parter signs up, Engine Yard creates a unique authentication ID, @auth_id@, and a unique authentication key, @auth_key@. Those tokens are used to sign every API call in both directions, with HMAC.
+When a partner signs up, Engine Yard creates a unique authentication ID, @auth_id@, and a unique authentication key, @auth_key@. Those tokens are used to sign every API call in both directions, with HMAC.
 
-The easiest way to sign requests is to use the "ey_api_hmac":https://github.com/engineyard/ey_api_hmac gem, and make your HTTP request with "rack-client":https://github.com/halorgium/rack-client. @EY::ApiHMAC::BaseConnection@ is a convenient wrapper for which automatically included the needed @EY::ApiHMAC::ApiAuth::Client@ middleware. (both are part of @ey_api_hmac@)
+The easiest way to sign requests is to use the "ey_api_hmac":https://github.com/engineyard/ey_api_hmac gem and make your HTTP request with "rack-client":https://github.com/halorgium/rack-client. @EY::ApiHMAC::BaseConnection@ is a convenient wrapper for which automatically included the needed @EY::ApiHMAC::ApiAuth::Client@ middleware. (both are part of @ey_api_hmac@)
 
-If you're using a different ruby HTTP library, the "auth-hmac":https://github.com/halorgium/auth-hmac gem should be able to help you sign requests.
+If you're using a different Ruby HTTP library, the "auth-hmac":https://github.com/halorgium/auth-hmac gem should be able to help you sign requests.
 
 h3. Implementation
 
-Each request includes an HTTP @Authorization@ header containing it's signature. This signature, encoded with HMAC, follows the format:
+Each request includes an HTTP @Authorization@ header containing its signature. This signature, encoded with HMAC, follows the format:
 
 bc.. Authorization: AuthHMAC {auth_id}:{signed_string}
 
-p. Where @auth_id@ is the Partner's unique ID, and @signed_string@ is an HMAC digest of the @canonical_string@ for the current request.
+p. Where @auth_id@ is the unique partner ID, and @signed_string@ is an HMAC digest of the @canonical_string@ for the current request.
 
-The @canonical_string@ can be calculated joining the following strings with @\n@ as the separator:
+The @canonical_string@ can be calculated by joining the following strings with @\n@ as the separator:
 
 # The HTTP request method (e.g. GET or POST).
 # The content type, as specified by the "Content-Type" HTTP header.
-# The content MD5, as specified by the "Content-MD5" HTTP header.  Or in it's absence, the MD5 hash of the request body.
+# The content MD5, as specified by the "Content-MD5" HTTP header.  Or in its absence, the MD5 hash of the request body.
 # The date, as specified by the "Date" HTTP header.
-# The request path, (URL without schema, host, post, or query parameters)
+# The request path, (URL without schema, host, post, or query parameters).
 
-p. Thus, to obtain the @signed_string@, the Partner has to use her secret @auth_key@ to sign this @cannonical_string@ and generate its base64 encoded representation using sha1-hmac digest. As an example, this Ruby code would generate our @signed_string@:
+p. Thus, to obtain the @signed_string@, partners use their secret @auth_key@ to sign this @cannonical_string@ and generate its base64 encoded representation using sha1-hmac digest. As an example, this Ruby code would generate our @signed_string@:
 
 bc.. [OpenSSL::HMAC.digest(OpenSSL::Digest::Digest.new('sha1'), auth_key, canonical_string)].pack('m').strip
 
@@ -89,13 +89,13 @@ p. Becomes the @signed_string@:
 
 bc.. o3wmVM41ihTXIHWDj6SkROBAg2g=
 
-p. Which can then be compared the value provided in the @Authorization@ header of the request.
+p. Which can then be compared to the value provided in the @Authorization@ header of the request.
 
-p. The method used is compatible with the auth-hmac ruby gem ("https://rubygems.org/gems/auth-hmac":https://rubygems.org/gems/auth-hmac). A simpler, rack-only implementation is provided as part of the ey_api_hmac gem ("https://github.com/engineyard/ey_api_hmac/blob/master/lib/ey_api_hmac.rb":https://github.com/engineyard/ey_api_hmac/blob/master/lib/ey_api_hmac.rb).
+p. The method used is compatible with the auth-hmac Ruby gem ("https://rubygems.org/gems/auth-hmac":https://rubygems.org/gems/auth-hmac). A simpler, rack-only implementation is provided as part of the ey_api_hmac gem ("https://github.com/engineyard/ey_api_hmac/blob/master/lib/ey_api_hmac.rb":https://github.com/engineyard/ey_api_hmac/blob/master/lib/ey_api_hmac.rb).
 
 h2. SSO / Collaboration
 
-Engine Yard users can be linked with multiple accounts. User memberships are distinguished as being either "collaborator" or "owner".  Services are enabled per-Account. SSO access to services happens per-User-membership.
+Engine Yard users can be linked with multiple accounts. User memberships are distinguished as being either "collaborator" or "owner".  Services are enabled per-account. SSO access to services happens per-user-membership.
 
 The SSO process signs a partner-provided URL to include identifying information about the user.  The identifying parameters are:
   * @ey_user_id@       - the unique identifier for the user.
@@ -104,12 +104,12 @@ The SSO process signs a partner-provided URL to include identifying information 
 
 What's NOT included is information about the account being accessed.  It is suggested that partners include this information somehow in the @configuration_url@ generated for each service account.
 
-Having parsed who the user is and the account they are accessing, the Partner should be able to display something appropriate.  Some integrations may wish to ignore id and name and simply treat all access to the account as a single user.  Other deeper integrations may take advantage of this additional information for per-user customizations.
+Having parsed who the user is and the account they are accessing, the partner should be able to display something appropriate.  Some integrations might choose to ignore ID and name and treat all access to the account as a single user.  Other deeper integrations may take advantage of this additional information for per-user customizations.
 
-It is the responsibility of Partners to determine what makes the most sense for their integration in terms of handling multiple users per account.
+It is the responsibility of partners to determine what makes the most sense for their integration in terms of handling multiple users per account.
 
 The SSO signing process also add the following other parameters:
-  * @ey_return_to_url@ - the url to be used when sending the user back to EY.
+  * @ey_return_to_url@ - the url to be used when sending the user back to Engine Yard.
   * @timestamp@        - time the signature was calculated, URL should be considered invalid if timestamp is more than 5 minutes off.
   * @signature@        - HMAC digest of the full url, minus this parameter (using the API @auth_id@ and @auth_key@)
 
@@ -119,7 +119,7 @@ bc.. EY::ApiHMAC::SSO.authenticated?(url, auth_id, auth_key)
 
 h3. SSO implementation
 
-p. Users reach Partner sites by being redirected to a @configuration_url@ (at service_account or provisioned_service level) which is communicated to EY via API described below.  The @configuration_url@ is "signed" by Engine Yard to add additional parameters and make it possible to validate.  If the signature validates, the partner should assume the user is allowed to access the account or resource exposed.
+p. Users reach partner sites by being redirected to a @configuration_url@ (at service_account or provisioned_service level) which is communicated to Engine Yard via API described below.  The @configuration_url@ is "signed" by Engine Yard to add additional parameters and make it possible to validate.  If the signature validates, the partner should assume the user is allowed to access the account or resource exposed.
 
 The process of signing adds some parameters to the URL query string.  The value of the @signature@ parameter is base64 encoded HMAC digest of the full url, minus the signature, using the partner's API auth_key as the secret.
 
@@ -148,7 +148,7 @@ bc.. http://partner/sso/customers/1/generators/1?access_level=owner& \
 ey_return_to_url=http%3A%2F%2Fawsm%2Fdeployments%2F1&ey_user_id=1&ey_user_name=Bob& \
 timestamp=2011-08-16T11%3A48%3A39-07%3A00&signature=AuthHMAC+ff4d04dbea52c605%3A38HUpyqVWcPqeeoSAgYm4IH1cp4%3D
 
-h4. The Process of Validation
+h4. The process of validation
 
 p. Using the URL without the signature param:
 
@@ -166,7 +166,7 @@ p. An example implementation of SSO is available here: "https://github.com/engin
 
 h2. API Error Handling
 
-The EY API will return RESTful HTTP status codes to indicate any failures processing requests. (http://en.wikipedia.org/wiki/List_of_HTTP_status_codes)
+The Engine Yard API returns RESTful HTTP status codes to indicate any failures processing requests. (http://en.wikipedia.org/wiki/List_of_HTTP_status_codes)
 
 It is assumed that the partner API will do likewise.
 
@@ -174,7 +174,7 @@ Error HTTP responses should have a JSON body with an "error_message".
 
 If a 4xx series error code is returned, the request is considered to have failed and should be modified in some way before being retried.
 
-If a 5xx series error code is returned, the caller is expected to either retry the request later, or message the failure to the requesting user to try again manually.
+If a 5xx series error code is returned, the caller is expected to either retry the request later or message the failure to the requesting user to try again manually.
 
 Examples:
 
@@ -190,14 +190,14 @@ bc.. 422 Unprocessable Entity
 
 h2. Partner Service Registration
 
-To create a new Service:
+To create a new service:
 
-*POST* to the @service_registration_url@ provided on partner signup
+*POST* to the @service_registration_url@ provided on partner sign-up
 
 bc.. {
   "service": {
     "name":                      "Compliment service",
-    "description":               "We post friendly messages to your dashboard daily.  Signup is free!"
+    "description":               "We post friendly messages to your dashboard daily.  Sign-up is free!"
     "vars":     [
       "api_key", 
       "daily_supplement_path"
@@ -206,16 +206,16 @@ bc.. {
     "terms_and_conditions_url":   "http://compliments-r-us.net/terms",
                                   // (optional: if provided, user will see a link and must check a checkbox)
     "service_accounts_url":       "http://api.compliments-r-us.net/engineyard-api/service_accounts",
-                                  // RESTful URL for creating service accounts for this service in Partner system
+                                  // RESTful URL for creating service accounts for this service in partner system
   }
 }
 
-p. EY will respond with a service, with it's @url@ provided in the Location header:
+p. Engine Yard responds with a service, with its @url@ provided in the Location header:
 
 bc.. 201 Created
 Location: http://addons.engineyard.com/api/1/partners/8/services/1232
 
-p. To update your Service configurations, you can:
+p. To update your service configurations, you can:
 
 *PUT* to the service's @url@
 
@@ -225,17 +225,17 @@ bc.. {
   }
 }
 
-p. You may not be allowed to update certain fields once you move out of alpha.
+p. You may not be allowed to update certain fields after you move out of Alpha.
 
-To facilitate having a "test" or "staging" version of your service, register the service a second time with slightly different attributes.  For example, include "test" in the name and description, and point to a "staging" @service_accounts_url@.  It's OK to register multiple services with the same vars, the gating will happen at the time of public beta.
+To facilitate having a "test" or "staging" version of your service, register the service a second time with slightly different attributes.  For example, include "test" in the name and description, and point to a "staging" @service_accounts_url@.  It's OK to register multiple services with the same vars, the gating happens at (public) Beta.
 
 h2. Service Enablement for User Account
 
-When a Customer goes to App Cloud Services dashboard they will be presented with a variety of services to enable.  Enabling a service will trigger an API call to setup the customer's account with the default plan for that service.  The customer may either be forced to immediately SSO into the service to configure it, or be presented with an optional link to configuration.  Partners may also use this entry point to allow the customer to upgrade/downgrade from the default plan provided.
+When users go to the Platform Services page of the Dashboard, they see a variety of services to enable.  Enabling a service triggers an API call to set up the user's account with the default plan for that service.  The user might either be forced to immediately SSO into the service to configure it or be presented with an optional link to configuration.  Partners can also use this entry point to allow the user to upgrade/downgrade from the default plan provided.
 
 h3. Service account creation
 
-When a customer enables the service from the services listing page, EY will:
+When a user enables the service from the services listing page, Engine Yard will:
 
 *POST* to the service's @service_accounts_url@
 
@@ -250,18 +250,18 @@ bc.. {
                      // RESTful URL for creating invoices for this service_account in Engineyard system (aka getting paid)
 }
 
-p. Partner should return a service account:
+p. The partner should return a service account:
 
 bc.. {
     "service_account": {
       "url":                      "http://api.compliments-r-us.net/engineyard-api/customers/4331"
-                                   // Identifier/URL for the service account in Partner systems
+                                   // Identifier/URL for the service account in partner systems
       "configuration_required":    true
                                    // true or false
       "configuration_url":        "http://compliments-r-us.net/accounts/4331/configure",
                                    // if configuration_required is true, user will be redirected here after enabling the service
       "provisioned_services_url":  "http://api.compliments-r-us.net/engineyard-api/service_accounts/4331/provisioned_services",
-                                   // RESTful URL for creating provisioned_services for this service_account in Partner system
+                                   // RESTful URL for creating provisioned_services for this service_account in partner system
     },
     "message":                  {}
                                 // optional, see "User Feedback" for formatting/contents
@@ -269,11 +269,11 @@ bc.. {
 
 h3. Partner account cancellation
 
-When/If a customer cancels their account, Engine Yard will:
+When/If users cancel their accounts, Engine Yard will:
 
 *DELETE* to the service_account's @url@
 
-p. Partner should return:
+p. The partner should return:
 
 bc.. 200 OK
 
@@ -284,14 +284,14 @@ h3. Account configuration
 If @configuration_required@ was true:
 
 * Service is not yet considered active (can't be provisioned or billed)
-* Customer is redirected to @configuration_url@ via SSO
+* User is redirected to @configuration_url@ via SSO
 * When configuration is completed:
-** partner should redirect the user (or provide a link) to @ey_return_to_url@
-** partner should make an API call to EY to note that config is complete
+** The partner should redirect the user (or provide a link) to @ey_return_to_url@
+** The partner should make an API call to Engine Yard to note that config is complete
 
 h4. Account updates API
 
-Partner should:
+The partner should:
 
 *PUT* to Engine Yard's service account @url@
 
@@ -302,30 +302,30 @@ bc.. {
   }
 }
 
-p. EY should return:
+p. Engine Yard should return:
 
 bc.. 200 OK
 
-h4. Post Account creation and configuration
+h4. Post account creation and configuration
 
-Once @configuration_required@ is true, the services dashboard will continue to show a link to configure.
+After @configuration_required@ is true, the services dashboard will continue to show a link to configure.
 
 h4. Extra steps in Alpha phase:
 
-* Login to partner account on services.engineyard.com
-* Turn on the "test" of your service for an app cloud account
+* Login to the partner account on services.engineyard.com
+* Turn on the "test" of your service for an Engine Yard Cloud account
 ** Choose from a list of all accounts that you as a user are collaborating with
-* Note: certain EY internal users will automatically see all "alpha" services (via a feature flag)
-* Note: "alpha" charges filed with EY will never actually be billed or payed out
+* Note: Certain Engine Yard internal users automatically see all "alpha" services (via a feature flag)
+* Note: "Alpha" charges filed with Engine Yard will never actually be billed or payed out
 
 h2. Service Provisioning
 
-* Customer may choose to provision services per application per environment.
-* In the background, EY will make calls to all selected services.
+* The user can choose to provision services per application per environment.
+* In the background, Engine Yard makes calls to all selected services.
 
 h4. Provision API call
 
-EY will:
+Engine Yard will:
 
 *POST* to the service's @provisioned_services_url@
 
@@ -345,7 +345,7 @@ bc.. {
     }
 }
 
-p. Partner should return a provisioned service:
+p. The partner should return a provisioned service:
 
 bc.. {
   "provisioned_service": {
@@ -366,20 +366,20 @@ p. The service MAY not immediately be available after provisioning, but it SHOUL
 
 h4. De-provision API call
 
-EY will:
+Engine Yard will:
 
 *DELETE* to the provisioned_service's @url@
 
-p. Partner should return:
+p. The partner should return:
 
 bc.. 200 OK
 
-h3. Configuration on Customer Instances
+h3. Configuration on user instances
 
-The @configuration_variables@ returned from the provision call will be populated on the customer instances.
+The @configuration_variables@ returned from the provision call are populated on the user's instances.
 
-These values will be:
-* Available as configration variables for customers ruby scripts and ruby applications, accessible via ey_config. ("https://github.com/engineyard/ey_config":https://github.com/engineyard/ey_config)
+These values are:
+* Available as configration variables for users' Ruby scripts and Ruby applications, accessible via ey_config. ("https://github.com/engineyard/ey_config":https://github.com/engineyard/ey_config)
 * Available in the "DNA" provided to chef recipes that may need them for configuration.
 * Constant until the user de-provisions.
 
@@ -387,7 +387,7 @@ h2. User Feedback
 
 h3. Messages
 
-To post a message to an account dashboard, Partner should:
+To post a message to an account dashboard, the partner should:
 
 *POST* to the service_account's @messages_url@
 
@@ -400,11 +400,11 @@ bc.. {
   }
 }
 
-p. EY should return:
+p. Engine Yard should return:
 
 bc.. 201 Created
 
-p. To post a message to a specific provisioned_service, Parter should:
+p. To post a message to a specific provisioned_service, the partner should:
 
 *POST* to the provisioned_service's @messages_url@
 
@@ -417,11 +417,11 @@ bc.. {
   }
 }
 
-p. EY should return:
+p. Engine Yard should return:
 
 bc.. 201 Created
 
-p. Messages will appear in the context of the sending service, with a link to the appropriate @configuration_url@ to SSO into the service if action is required.
+p. Messages appear in the context of the sending service, with a link to the appropriate @configuration_url@ to SSO into the service if action is required.
 
 @message_type@ may be either "status", "notification" or "alert".
 
@@ -454,13 +454,13 @@ Examples:
 
 h2. Billing
 
-Engine Yard bills it's customers monthly, for usage by calendar month.  A few days after the beginning of each month, the previous month's billing cycle is closed and an invoice is calculated for it.
+Engine Yard bills its users monthly, for usage by calendar month.  A few days after the beginning of each month, the previous month's billing cycle is closed and an invoice is calculated for it.
 
-As a partner, in order to collect for services, you are required to submit invoices to Engine Yard.  Submitted invoice will be placed in the next available (open) billing cycle, and will be billed the customer when that billing cycle closes.  Generally, invoices should be submitted for usage for the previous month shortly after the close of the month.  Submitting multiple invoices per billing cycle is allowed, but not expected to be the norm.
+In order to collect for services, partners are required to submit invoices to Engine Yard.  Submitted invoice will be placed in the next available (open) billing cycle, and will be billed the user when that billing cycle closes.  Generally, invoices should be submitted for usage for the previous month shortly after the close of the month.  Submitting multiple invoices per billing cycle is allowed, but not expected to be the norm.
 
-If a customer cancels service, an invoice for usage should be submitted within 24 hours of cancelation (preferably immediately).
+If a user cancels service, an invoice for usage should be submitted within 24 hours of cancellation (preferably immediately).
 
-To send an invoice, the Partner should:
+To send an invoice, the partner should:
 
 *POST* to the service_account's @invoices_url@
 
@@ -473,24 +473,24 @@ bc.. {
     }
 }
 
-p. EY should return:
+p. Engine Yard should return:
 
 bc.. 201 Created
 
-p. The @total_amount_cents@ is a numeric USD value in cents (but without the "$" sign), and must be an integer greater than zero.  This is the only field actually used to invoice the customer.  This is the total amount charged to the customer, irrespective of the division of royalties to Engine Yard.
+p. The @total_amount_cents@ is a numeric USD value in cents (but without the "$" sign), and must be an integer greater than zero.  This is the only field actually used to invoice the user.  This is the total amount charged to the user, irrespective of the division of royalties to Engine Yard.
 
-The @line_item_description@ is a breakdown of the calculation used to produce the @total_amount@, and will appear on the invoice provided to the customer.
+The @line_item_description@ is a breakdown of the calculation used to produce the @total_amount@, and will appear on the invoice provided to the user.
 
 h2. Beta process
 
 The Beta pipeline is:
 
 # Testing
-# Private Beta
-# Public Beta (optional)
+# Alpha (sometimes called Private Beta)
+# Beta (optional)
 # General Availability (GA)
 
-Services can be transitioned down the pipeline through the partner dashboard.  Each transition will require manual approval by Engine Yard.
+Services can be transitioned down the pipeline through the partner dashboard.  Each transition requires manual approval by Engine Yard.
 
 h3. Testing
 
@@ -498,17 +498,17 @@ h3. Testing
 * The service is visible for any account owned by the user who created the service.
 * The service can optionally be made visible to any account collaborated on by the user who created the service.
 
-h3. Private Beta
+h3. Alpha (Private Beta)
 
 * Service is present on services listing page, with:
 ** "Coming soon" tag.
 ** "Request access" button.
-* Partners can see all customers who have requested access, and can grant access via the partner dashboard.
+* Partners can see all users who have requested access and can grant access via the partner dashboard.
 
-h3. Public Beta
+h3. Beta (Public Beta)
 
-Identical to GA (below), but the service is tagged as "Beta" on the services screen.  This is intended to set expectations to customers as to what level of support they can expect from partners.
+Identical to GA (below), but the service is tagged as "Beta" on the services screen.  This is intended to set expectations to users as to what level of support they can expect from partners.
 
 h3. GA
 
-The service is visible on the service listing, and can be enabled by any customer.
+The service is visible on the service listing and can be enabled by any user.
