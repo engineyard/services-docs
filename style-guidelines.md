@@ -1,4 +1,4 @@
-h1. Style Guide
+# Style Guide
 
 ### Two important points about Engine Yard Platform Services integration:
 
