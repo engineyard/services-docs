@@ -4,7 +4,7 @@
 
 The purpose of this document is to:  
 
-* Inform platform-service providers about the types of messages that they can use to communicate with Engine Yard Cloud users.
+* Inform Add-on partners about the types of messages that they can use to communicate with Engine Yard Cloud users.
 * Provide guidelines about how platform-service providers should write and use these messages.
 
 ### Table of contents
