@@ -204,7 +204,7 @@ bc.. {
     ],
     "home_url":                   "http://compliments-r-us.net",
     "terms_and_conditions_url":   "http://compliments-r-us.net/terms",
-                                  // (optional: if provided, user will see a link and must check a checkbox)
+                                  // (optional: if provided, user will see a link)
     "service_accounts_url":       "http://api.compliments-r-us.net/engineyard-api/service_accounts",
                                   // RESTful URL for creating service accounts for this service in partner system
   }
