@@ -323,7 +323,7 @@ h2. Service Provisioning
 * The user can choose to provision services per application per environment.
 * In the background, Engine Yard makes calls to all selected services.
 
-![AccountP](https://s3.amazonaws.com/tres-cms/AccountP.jpg)
+!https://s3.amazonaws.com/tres-cms/AccountP.jpg(AccountP)!
 
 h4. Provision API call
 
@@ -442,7 +442,7 @@ h4. Notification
 
 Notifications are persistent and dismissible.  Many notifications can be presented to the user at any given time.  If a service accumulates too many un-dismissed notifications, they will appear in a roll-up with a count.
 
-![Alerts](https://s3.amazonaws.com/tres-cms/alerts.jpg)
+!https://s3.amazonaws.com/tres-cms/alerts.jpg(Alerts)!
 
 Examples:
 * Letting the user know they are approaching plan limits.
@@ -464,7 +464,7 @@ In order to collect for services, partners are required to submit invoices to En
 
 If a user cancels service, an invoice for usage should be submitted within 24 hours of cancellation (preferably immediately).
 
-![Billing](https://s3.amazonaws.com/tres-cms/Billing.jpg)
+!https://s3.amazonaws.com/tres-cms/Billing.jpg(Billing)!
 
 To send an invoice, the partner should:
 
