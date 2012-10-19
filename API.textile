@@ -323,6 +323,8 @@ h2. Service Provisioning
 * The user can choose to provision services per application per environment.
 * In the background, Engine Yard makes calls to all selected services.
 
+![AccountP](https://s3.amazonaws.com/tres-cms/AccountP.jpg)
+
 h4. Provision API call
 
 Engine Yard will:
@@ -440,6 +442,8 @@ h4. Notification
 
 Notifications are persistent and dismissible.  Many notifications can be presented to the user at any given time.  If a service accumulates too many un-dismissed notifications, they will appear in a roll-up with a count.
 
+![Alerts](https://s3.amazonaws.com/tres-cms/alerts.jpg)
+
 Examples:
 * Letting the user know they are approaching plan limits.
 * Normal service messages that could be classified as warnings.
@@ -459,6 +463,8 @@ Engine Yard bills its users monthly, for usage by calendar month.  A few days af
 In order to collect for services, partners are required to submit invoices to Engine Yard.  Submitted invoice will be placed in the next available (open) billing cycle, and will be billed the user when that billing cycle closes.  Generally, invoices should be submitted for usage for the previous month shortly after the close of the month.  Submitting multiple invoices per billing cycle is allowed, but not expected to be the norm.
 
 If a user cancels service, an invoice for usage should be submitted within 24 hours of cancellation (preferably immediately).
+
+![Billing](https://s3.amazonaws.com/tres-cms/Billing.jpg)
 
 To send an invoice, the partner should:
 
