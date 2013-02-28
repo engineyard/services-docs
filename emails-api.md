@@ -1,10 +1,14 @@
 #e-mails in the add-ons api.
 
-This is a "beta" feature, I have yet to confirm a partner successfully and completely integrating with it. Please let me know if you have any problems integrating with it.
+The Add-ons e-mail API is now released for production use.
 
-That said, it is tested and it should work.
+The challenge with simply providing an e-mail to the Add-on partner is that the Engione Yard account e-mails can change over time.  We solve this with notifications.  Thus, we will only send you e-mail address if you have implemented support for notifications.
 
-So the problem with simply providing an e-mail to the partner is that the e-mail could change.  We solve it with notifications.  Thus, we will only send you e-mail address if you have implemented support for notifications.
+In summary, you will need to: 
+
+* Provide a "users_url" on account setup and respond to authenticated GETs to that URL with the format EY expects.
+* Include in the users_url response the current e-mail and a "url" to which we can PUT updated for EACH user.
+* Support PUT requests to the url returned in #2 and properly update your records.
 
 To support notifications, send a "users_url" along with your response to service account creation.
 Example:
@@ -40,7 +44,7 @@ When the User then SSO's to the parter addon, the e-mail will be included. For e
 
 The partner gets the email along with id and name and can save this info.
 
-When/If the user changes their e-mail address, we will make a GET request to the users_url we have for the addon, and determine if that update needs to be propagated to the addon.  For example:
+When/If the user changes their e-mail address, we will make a GET request to the users_url we have for the Add-on, and determine if that update needs to be propagated to the Add-on.  For example:
 
     ApiHMAC -> GET (http://mock.service/api/1/accounts/123/users) ->
     service_provider
@@ -60,11 +64,5 @@ We see all the information the partner has saved.  In this case, it included a d
 
     ApiHMAC <--200-- service_provider
     {}
-
-Thus, to summarize. You will need to: 
-
-* Provide a "users_url" on account setup and respond to authenticated GETs to that URL with the format EY expects.
-* Include in the users_url response the current e-mail and a "url" to which we can PUT updated for EACH user.
-* Support PUT requests to the url returned in #2 and properly update your records.
 
 For further example of how the e-mails API works, see [this test in `ey_services_api`](https://github.com/engineyard/ey_services_api/blob/master/spec/users_spec.rb#L10).
