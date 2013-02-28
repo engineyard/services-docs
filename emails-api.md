@@ -1,4 +1,4 @@
-#e-mails in the add-ons api.
+#Customer Account E-mails from the Add-on Partner API
 
 The Add-ons e-mail API is now released for production use.
 
