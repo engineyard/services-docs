@@ -36,7 +36,7 @@ Example:
 
 Notice that the returned JSON includes a "users_url" specific to the account that was created.  Now Engine Yard has a URL it can use to post updates if any information about the users on that account changes.
 
-When the User then SSO's to the parter addon, the e-mail will be included. For example:
+When the User then SSO's to the parter Add-on, the e-mail will be included. For example:
 
     ApiHMAC -> GET (http://mock.service/sso/account/123?access_level=owner&ey_return_to_url=https%3A%2F%2Fcloud.engineyard.com%2Fdashboard&ey_user_email=the-one-user%40example.com&ey_user_id=2164740220&ey_user_name=Person+Name&timestamp=2012-05-11T11%3A23%3A52-07%3A00&signature=AuthHMAC+123edf%3A8AuxfLpndgtIojrwmTBYoARXs1I%3D)
     -> service_provider
