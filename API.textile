@@ -1,6 +1,6 @@
 h1. Engine Yard Add-ons API
 
-This document describes how partners work with Engine Yard to provide services that integrate with Engine Yard Cloud to Engine Yard users.  A Ruby implementation of this API is available via: @gem install ey_services_api@ (Source code here: "https://github.com/engineyard/ey_services_api":https://github.com/engineyard/ey_services_api).
+This document describes how partners work with Engine Yard to provide Add-on services that integrate with Engine Yard Cloud and are made available to Engine Yard users.  A Ruby implementation of this API is available via: @gem install ey_services_api@ (Source code here: "https://github.com/engineyard/ey_services_api":https://github.com/engineyard/ey_services_api).
 
 h2. Key Topics in this Document:
 
@@ -16,28 +16,28 @@ General API properties:
 
 Specific APIs are:
 
-* Partner Service Registration -- The way in which partners create and expose services to Engine Yard users.
+* Partner Service Registration -- The way in which partners create and expose Add-on services to Engine Yard users.
 
-* Service Enablement for User Account -- The way in which Engine Yard users sign up for services.
+* Service Enablement for User Account -- The way in which Engine Yard users sign up for Add-on services.
 
-* Service Provisioning -- The way in which Engine Yard users provision a service for a particular use.
+* Service Provisioning -- The way in which Engine Yard users provision an Add-on service for a particular use.
 
-* User Feedback -- The way in which partners can send messages to Engine Yard users about their services.
+* User Feedback -- The way in which partners can send messages to Engine Yard Cloud and users about their Add-on service.
 
-* Billing -- The way in which partners are paid.
+* Billing -- The way in which partners submit Add-on related invoice line items to Engine Yard and customers.
 
 h2. Definitions
 
 These definitions are helpful for understanding this document:
 
-| *Partner*               | A third party integrating one or more services with Engine Yard Cloud. |
+| *Partner*               | A third party integrating one or more Add-on services with Engine Yard Cloud. |
 | *Service*               | Functionality provided by a partner. |
 | *Application*           | A web application and its deployment configuration on Engine Yard Cloud. |
-| *Environment*           | A set of one or more running servers hosting one or more running applications. |
+| *Environment*           | A set of one or more running servers hosting one or more running Applications. |
 | *Provisioned Service*   | A piece of functionality or capacity provisioned on-demand for a specific application and environment. |
-| *Account*               | A single billed entity, having one or more applications running in one or more environments.  |
-| *Service Account*       | A particular service as activated for a specific account.  A parent entity to Provisioned Service. |
-| *User*                  | An individual user (with unique email and login credential) having access to one or more accounts. |
+| *Account*               | A single billed entity (Engine Yard customer), having one or more Applications running in one or more Environments.  |
+| *Service Account*       | A particular Add-on Service as activated for a specific Account.  A parent entity to Provisioned Service. |
+| *User*                  | An individual user (with unique email and login credential) having access to one or more Accounts. |
 
 h2. API Authentication
 
@@ -381,10 +381,11 @@ h3. Configuration on user instances
 The @configuration_variables@ returned from the provision call are populated on the user's instances.
 
 These values are:
-* Available as configration variables for users' Ruby scripts and Ruby applications, accessible via ey_config. ("https://github.com/engineyard/ey_config":https://github.com/engineyard/ey_config)
 * Available in the "DNA" provided to chef recipes that may need them for configuration.
 * Constant until the user de-provisions.
-
+* Available as configration variables for users' scripts and applications
+** Ruby:  accessible via ey_config ("https://github.com/engineyard/ey_config":https://github.com/engineyard/ey_config)
+** Node.js:  accessible via ey_config.node ("https://github.com/engineyard/ey_config.node":https://github.com/engineyard/ey_config.node)
 h2. User Feedback
 
 h3. Messages
