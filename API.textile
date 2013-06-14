@@ -384,8 +384,8 @@ These values are:
 * Available in the "DNA" provided to chef recipes that may need them for configuration.
 * Constant until the user de-provisions.
 * Available as configration variables for users' scripts and applications
-** Ruby:  accessible via ey_config ("https://github.com/engineyard/ey_config":https://github.com/engineyard/ey_config)
-** Node.js:  accessible via ey_config.node ("https://github.com/engineyard/ey_config.node":https://github.com/engineyard/ey_config.node)
+** *Ruby:*  accessible via ey_config ("https://github.com/engineyard/ey_config":https://github.com/engineyard/ey_config)
+** *Node.js:*  accessible via ey_config.node ("https://github.com/engineyard/ey_config.node":https://github.com/engineyard/ey_config.node)
 h2. User Feedback
 
 h3. Messages
