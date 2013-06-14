@@ -1,6 +1,6 @@
-h1. Getting Started
+h1. Getting Started Creating an Engine Yard Add-on
 
-Steps to getting started with an Engine Yard partner account.
+Steps to obtain an Add-on partner Engine Yard account.
 
 # Sign up for an Engine Yard Cloud account at "http://cloud.engineyard.com/":http://cloud.engineyard.com/.  A trial account is fine.
 # Email your contact at Engine Yard with the following information:
@@ -8,9 +8,9 @@ Steps to getting started with an Engine Yard partner account.
 ** The name of your Engine Yard Cloud account
 ** The name you want to use for your partner account. (This is internal only.)
 
-Engine Yard then creates a partner account for you, granting you access to: "https://services.engineyard.com":https://services.engineyard.com
+Engine Yard then creates an Add-on partner account for you, granting you access to: "https://services.engineyard.com":https://services.engineyard.com
 
-This page provides you with the information you need to register services.  After you have registered a service, you can use the web UI to activate the service in "test" for the Engine Yard Cloud account that you created in Step 1.
+This Add-on Partner portal provides you with the information you need to register and develop Add-on services.  After you have registered an Add-on service, you can use the UI from services.engineyard.com to activate the Add-on in a private test-mode that will only be available to Engine Yard Cloud account that you created in Step 1.
 
 h1. Documentation
 
@@ -18,11 +18,8 @@ h1. Documentation
 
 *Tutorial-style* documentation at: "https://github.com/engineyard/chronatog":https://github.com/engineyard/chronatog
 
-*Guidelines* for platform services *messages* at:
+*Guidelines* for Add-on *messages* at:
 "https://github.com/engineyard/services-docs/blob/master/messaging-guidelines.md":https://github.com/engineyard/services-docs/blob/master/messaging-guidelines.md
-
-*Guidelines* for putting a return-to-Engine-Yard button on your site:
-"https://github.com/engineyard/services-docs/blob/master/return-button-guidelines.md":https://github.com/engineyard/services-docs/blob/master/return-button-guidelines.md
 
 *Service Provider API Gem* at: "https://github.com/engineyard/ey_services_api":https://github.com/engineyard/ey_services_api
 
