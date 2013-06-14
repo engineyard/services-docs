@@ -231,7 +231,7 @@ To facilitate having a "test" or "staging" version of your service, register the
 
 h2. Service Enablement for User Account
 
-When users go to the Platform Services page of the Dashboard, they see a variety of services to enable.  Enabling a service triggers an API call to set up the user's account with the default plan for that service.  The user might either be forced to immediately SSO into the service to configure it or be presented with an optional link to configuration.  Partners can also use this entry point to allow the user to upgrade/downgrade from the default plan provided.
+When users go to the Add-ons page of Engine Yard Cloud, they see a variety of services to enable.  Enabling a service triggers an API call to set up the user's account with the default plan for that service.  The user might either be forced to immediately SSO into the service to configure it or be presented with an optional link to configuration.  Partners can also use this entry point to allow the user to upgrade/downgrade from the default plan provided.
 
 h3. Service account creation
 
@@ -440,7 +440,7 @@ Examples:
 
 h4. Notification
 
-Notifications are persistent and dismissible.  Many notifications can be presented to the user at any given time.  If a service accumulates too many un-dismissed notifications, they will appear in a roll-up with a count.
+Notifications are persistent and dismissible.  Many notifications can be presented to the user at any given time.  If a service accumulates too many un-dismissed notifications, they will appear in a roll-up with a count.  Notifications are displayed to Engine Yard cloud users along side App and Environment management pages in the following manner:
 
 !https://s3.amazonaws.com/tres-cms/alerts.jpg(Alerts)!
 
