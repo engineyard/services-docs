@@ -386,6 +386,7 @@ These values are:
 * Available as configration variables for users' scripts and applications
 ** *Ruby:*  accessible via ey_config ("https://github.com/engineyard/ey_config":https://github.com/engineyard/ey_config)
 ** *Node.js:*  accessible via ey_config.node ("https://github.com/engineyard/ey_config.node":https://github.com/engineyard/ey_config.node)
+
 h2. User Feedback
 
 h3. Messages
