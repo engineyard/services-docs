@@ -8,7 +8,7 @@ Steps to obtain an Add-on partner Engine Yard account.
 ** The name of your Engine Yard Cloud account
 ** The name you want to use for your partner account. (This is internal only.)
 
-Engine Yard then creates an Add-on partner account for you, granting you access to: "https://services.engineyard.com":https://services.engineyard.com
+Your Engine Yard contact will then upgrade your Cloud accout to an Add-on partner account, granting you access to the Add-on partner portal at: "https://services.engineyard.com":https://services.engineyard.com
 
 This Add-on Partner portal provides you with the information you need to register and develop Add-on services.  After you have registered an Add-on service, you can use the UI from services.engineyard.com to activate the Add-on in a private test-mode that will only be available to Engine Yard Cloud account that you created in Step 1.
 
