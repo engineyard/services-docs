@@ -1,4 +1,4 @@
-h1. API
+h1. Engine Yard Add-ons API
 
 This document describes how partners work with Engine Yard to provide services that integrate with Engine Yard Cloud to Engine Yard users.  A Ruby implementation of this API is available via: @gem install ey_services_api@ (Source code here: "https://github.com/engineyard/ey_services_api":https://github.com/engineyard/ey_services_api).
 
