@@ -1,4 +1,4 @@
-h1. Getting Started Creating an Engine Yard Add-on
+h1. Creating an Engine Yard Add-on
 
 Steps to obtain an Add-on partner Engine Yard account.
 
