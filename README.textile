@@ -5,10 +5,9 @@ Steps to obtain an Add-on partner Engine Yard account.
 # Sign up for an Engine Yard Cloud account at "http://cloud.engineyard.com/":http://cloud.engineyard.com/.  A trial account is fine.
 # Email your contact at Engine Yard with the following information:
 ** The email you used to sign up
-** The name of your Engine Yard Cloud account
-** The name you want to use for your partner account. (This is internal only.)
-
-Your Engine Yard contact will then upgrade your Cloud accout to an Add-on partner account, granting you access to the Add-on partner portal at: "https://services.engineyard.com":https://services.engineyard.com
+** The name you want to use for your partner account. (Internal use only, not visible to Customers.)
+# Your Engine Yard contact will then upgrade your Cloud accout to an Add-on partner account
+** You will now have access to the Add-on partner portal: "https://services.engineyard.com":https://services.engineyard.com
 
 This Add-on Partner portal provides you with the information you need to register and develop Add-on services.  After you have registered an Add-on service, you can use the UI from "https://services.engineyard.com":https://services.engineyard.com to activate the Add-on in a private test-mode that will only be available to Engine Yard Cloud account that you created in Step 1.
 
@@ -16,12 +15,12 @@ h1. Documentation
 
 *Specification-style* documentation at: "https://github.com/engineyard/services-docs/blob/master/API.textile":https://github.com/engineyard/services-docs/blob/master/API.textile
 
-*Tutorial-style* documentation at: "https://github.com/engineyard/chronatog":https://github.com/engineyard/chronatog
+*Tutorial-style* documentation (example Add-on service implementation) at: "https://github.com/engineyard/chronatog":https://github.com/engineyard/chronatog
 
 *Guidelines* for Add-on *messages* at:
 "https://github.com/engineyard/services-docs/blob/master/messaging-guidelines.md":https://github.com/engineyard/services-docs/blob/master/messaging-guidelines.md
 
-*Service Provider API Gem* at: "https://github.com/engineyard/ey_services_api":https://github.com/engineyard/ey_services_api
+*Add-on Provider API Gem* at: "https://github.com/engineyard/ey_services_api":https://github.com/engineyard/ey_services_api
 
 *HMAC Authentication and SSO Gem* at: "https://github.com/engineyard/ey_api_hmac":https://github.com/engineyard/ey_api_hmac
 
